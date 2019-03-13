@@ -34,8 +34,9 @@ class Card {
   }
 
   display() {
+    // TODO: return nice string representation
     let suit
-    switch (this.sui) {
+    switch (this.suit) {
       case 0:
         suit = 'Diamonds'
         break;
@@ -68,9 +69,13 @@ class Player {
   }
 
   countPoints(surpriseCard) {
-    this.points += 1 // hardcoded to 1 right now
+    this.points += Math.floor(Math.random() * 10)
     // I think it would be fun to make players state the points that they claim
   } 
+
+  flipTable() {
+    // end the game
+  }
 }
 
 class Game {
@@ -177,6 +182,15 @@ class Game {
     this.player2 = [this.player1, this.player1 = this.player2][0];
   }
 
+  checkWinner() {
+
+    if (this.player1.points > 120) return this.player1
+    if (this.player2.points > 120) return this.player2
+
+    return false
+  }
+
+
   round() {
     this.dealCards()
     this.cribSelect()
@@ -186,6 +200,13 @@ class Game {
     this.playersCountPoints()
     this.playersPutCardsBackInDeck()
     this.countPointsWithCrib()
+
+    // for now I'm only checking winner once... obviously this should be ongoing
+
+    const winner = this.checkWinner()
+
+    if (winner) return winner
+
     this.swapPlayers()    
   }
 }
