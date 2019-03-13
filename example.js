@@ -1,4 +1,4 @@
-// const crib = require('@nima/crib')
+// const crib = require('@nimaboscarino/crib')
 const crib = require('./crib')
 
 const game = new crib.Game('Sadie', 'Nima')
